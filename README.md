@@ -148,6 +148,7 @@ Para executar os testes unitários e de integração implementados no projeto:
 
 ```bash
 mvn test
+```
 
 ---
 
