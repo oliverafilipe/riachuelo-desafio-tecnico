@@ -45,9 +45,7 @@ public class SwapiClient {
 
             throw new SwapiIntegrationException("A SWAPI retornou status não esperado: " + response.getStatusCode());
         } catch (RestClientException e) {
-            log.error("Falha ao comunicar com a SWAPI: {}", e.getMessage(), e);
             throw new SwapiIntegrationException("Erro de comunicação com a SWAPI: " + e.getMessage(), e);
         }
     }
 }
-

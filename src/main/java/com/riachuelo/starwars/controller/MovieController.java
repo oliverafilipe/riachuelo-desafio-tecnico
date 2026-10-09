@@ -112,7 +112,7 @@ public class MovieController {
             @Parameter(description = "Identificador único do filme", example = "1")
             @PathVariable Long id,
             @Valid @RequestBody UpdateDescriptionDTO dto) {
-        Movie movieAtualizado = movieService.atualizarDescricao(id, dto.getOpeningCrawl());
+        Movie movieAtualizado = movieService.atualizarDescricao(id, dto.openingCrawl());
         return ResponseEntity.ok(MovieResponseDTO.from(movieAtualizado));
     }
 }

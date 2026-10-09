@@ -62,7 +62,7 @@ public class MovieService {
                 log.warn("Nenhum filme foi retornado pela SWAPI durante a inicialização.");
             }
         } catch (Exception e) {
-            log.error("Falha ao carregar filmes da SWAPI na inicialização: {}", e.getMessage(), e);
+            log.error("Falha ao carregar filmes da SWAPI na inicialização: {}", e.getMessage());
         }
     }
 
@@ -91,8 +91,7 @@ public class MovieService {
     }
 
     /**
-     * Atualiza a descrição (openingCrawl) de um filme e incrementa sua versão.
-     * O acesso é sincronizado por filme para garantir concorrência thread-safe.
+     * Atualiza a descrição (openingCrawl) de um filme e incrementa sua versão atômica.
      *
      * @param id Identificador do filme.
      * @param novaDescricao Novo texto de openingCrawl.
@@ -101,11 +100,8 @@ public class MovieService {
      */
     public Movie atualizarDescricao(Long id, String novaDescricao) {
         Movie movie = buscarPorId(id);
-        synchronized (movie) {
-            movie.setOpeningCrawl(novaDescricao);
-            movie.incrementarVersao();
-        }
+        movie.setOpeningCrawl(novaDescricao);
+        movie.incrementarVersao();
         return movie;
     }
 }
-

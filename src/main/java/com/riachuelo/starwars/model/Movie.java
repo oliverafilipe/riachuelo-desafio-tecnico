@@ -1,6 +1,7 @@
 package com.riachuelo.starwars.model;
 
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Entidade de domínio representando um filme da saga Star Wars.
@@ -10,14 +11,14 @@ public class Movie {
     private Long id;
     private String title;
     private Integer episodeId;
-    private String openingCrawl;
+    private volatile String openingCrawl;
     private String director;
     private String producer;
     private String releaseDate;
-    private Long version;
+    private final AtomicLong version;
 
     public Movie() {
-        this.version = 1L;
+        this.version = new AtomicLong(1L);
     }
 
     public Movie(Long id, String title, Integer episodeId, String openingCrawl,
@@ -29,19 +30,15 @@ public class Movie {
         this.director = director;
         this.producer = producer;
         this.releaseDate = releaseDate;
-        this.version = version != null ? version : 1L;
+        this.version = new AtomicLong(version != null ? version : 1L);
     }
 
     /**
-     * Incrementa a versão do filme de forma concorrente e segura.
+     * Incrementa a versão do filme de forma atômica e thread-safe.
      * A versão inicial é 1.
      */
-    public synchronized void incrementarVersao() {
-        if (this.version == null) {
-            this.version = 1L;
-        } else {
-            this.version++;
-        }
+    public void incrementarVersao() {
+        this.version.incrementAndGet();
     }
 
     public Long getId() {
@@ -68,11 +65,11 @@ public class Movie {
         this.episodeId = episodeId;
     }
 
-    public synchronized String getOpeningCrawl() {
+    public String getOpeningCrawl() {
         return openingCrawl;
     }
 
-    public synchronized void setOpeningCrawl(String openingCrawl) {
+    public void setOpeningCrawl(String openingCrawl) {
         this.openingCrawl = openingCrawl;
     }
 
@@ -100,12 +97,12 @@ public class Movie {
         this.releaseDate = releaseDate;
     }
 
-    public synchronized Long getVersion() {
-        return version;
+    public Long getVersion() {
+        return version.get();
     }
 
-    public synchronized void setVersion(Long version) {
-        this.version = version;
+    public void setVersion(Long version) {
+        this.version.set(version != null ? version : 1L);
     }
 
     @Override
@@ -131,8 +128,7 @@ public class Movie {
                 ", director='" + director + '\'' +
                 ", producer='" + producer + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
-                ", version=" + version +
+                ", version=" + version.get() +
                 '}';
     }
 }
-
