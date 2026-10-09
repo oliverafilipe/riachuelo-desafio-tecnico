@@ -148,3 +148,13 @@ Para executar os testes unitários e de integração implementados no projeto:
 
 ```bash
 mvn test
+
+---
+
+## ⚡ Otimizações e Melhorias Futuras
+
+1. **Uso de Cache na `SwapiClient`**:
+   - Possibilidade de implementar estratégias de cache (ex.: Spring Cache com `@Cacheable`, Caffeine ou Redis) nas chamadas do `SwapiClient` para a SWAPI externa. Isso evita requisições HTTP redundantes à API de terceiros, reduz a latência durante reinicializações e garante maior resiliência caso a SWAPI apresente instabilidades temporárias.
+
+2. **Logs para Observabilidade e Métricas de Tempo de Execução**:
+   - Adição de logs estruturados (JSON) integrados a soluções de observabilidade (ex.: Elastic Stack, Datadog ou OpenTelemetry) juntamente com instrumentação via **Micrometer** e **Spring Boot Actuator**. Isso permite monitorar o tempo de execução e resposta das chamadas HTTP externas (`SwapiClient`), taxa de erros e throughput dos endpoints REST em tempo real.
