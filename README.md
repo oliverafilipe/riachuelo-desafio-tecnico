@@ -8,9 +8,19 @@ API REST desenvolvida em Java 17 com Spring Boot para gerenciar e consumir dados
 
 * **Java 17+**
 * **Spring Boot** (Web, Rest, Actuator)
+* **OpenAPI 3 / Swagger UI** (Documentação interativa da API)
 * **RestTemplate / WebClient** (Integração com a SWAPI)
 * **Maven** (Gerenciamento de dependências)
 * **JUnit 5 & Mockito** (Testes unitários e de integração)
+
+---
+
+## 📚 Documentação Swagger / OpenAPI
+
+Com a aplicação em execução, a documentação interativa da API REST gerada pelo Swagger UI / OpenAPI 3 pode ser acessada nos seguintes links:
+
+* **Swagger UI (Interface Interativa)**: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+* **Especificação OpenAPI JSON**: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
 
 ---
 
