@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Maven wrapper script
+# Maven wrapper script with support for 'run' shortcut (maps to spring-boot:run)
 
 set -e
 
@@ -13,5 +13,9 @@ else
     exit 1
 fi
 
-exec "$MVN_CMD" "$@"
+if [ "$1" = "run" ]; then
+    shift
+    exec "$MVN_CMD" spring-boot:run "$@"
+fi
 
+exec "$MVN_CMD" "$@"
