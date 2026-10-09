@@ -1,0 +1,478 @@
+{
+  "info": {
+    "_postman_id": "9b1e2f3a-4c5d-4e6f-8a9b-0c1d2e3f4a5b",
+    "name": "Star Wars Movies API",
+    "description": "Coleção Postman com todas as operações da API REST de filmes da saga Star Wars (Desafio Técnico Riachuelo).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Listar Filmes",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/movies",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "movies"
+          ]
+        },
+        "description": "Retorna a lista de todos os filmes da saga Star Wars atualmente carregados em memória com suas respectivas versões e detalhes."
+      },
+      "response": [
+        {
+          "name": "200 OK - Sucesso",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/movies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "movies"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n  {\n    \"id\": 1,\n    \"title\": \"A New Hope\",\n    \"episodeId\": 4,\n    \"openingCrawl\": \"It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire...\",\n    \"director\": \"George Lucas\",\n    \"producer\": \"Gary Kurtz, Rick McCallum\",\n    \"releaseDate\": \"1977-05-25\",\n    \"version\": 1\n  },\n  {\n    \"id\": 2,\n    \"title\": \"The Empire Strikes Back\",\n    \"episodeId\": 5,\n    \"openingCrawl\": \"It is a dark time for the Rebellion. Although the Death Star has been destroyed, Imperial troops have driven the Rebel forces from their hidden base...\",\n    \"director\": \"Irvin Kershner\",\n    \"producer\": \"Gary Kurtz, Rick McCallum\",\n    \"releaseDate\": \"1980-05-21\",\n    \"version\": 1\n  }\n]"
+        }
+      ]
+    },
+    {
+      "name": "2. Detalhar Filme por ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/movies/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "movies",
+            "1"
+          ]
+        },
+        "description": "Exibe os detalhes de um filme específico a partir do seu identificador (ID)."
+      },
+      "response": [
+        {
+          "name": "200 OK - Sucesso",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/movies/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "movies",
+                "1"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"id\": 1,\n  \"title\": \"A New Hope\",\n  \"episodeId\": 4,\n  \"openingCrawl\": \"It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire...\",\n  \"director\": \"George Lucas\",\n  \"producer\": \"Gary Kurtz, Rick McCallum\",\n  \"releaseDate\": \"1977-05-25\",\n  \"version\": 1\n}"
+        }
+      ]
+    },
+    {
+      "name": "3. Detalhar Filme - ID Inexistente (404)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/movies/999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "movies",
+            "999"
+          ]
+        },
+        "description": "Exemplo de busca por um ID de filme que não existe no cache em memória. Retorna erro 404 Not Found."
+      },
+      "response": [
+        {
+          "name": "404 Not Found",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/movies/999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "movies",
+                "999"
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"timestamp\": \"2026-10-09T18:00:00\",\n  \"status\": 404,\n  \"error\": \"Not Found\",\n  \"message\": \"Filme com ID 999 não encontrado.\",\n  \"path\": \"/api/movies/999\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "4. Atualizar Descrição do Filme (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"openingCrawl\": \"Nova descrição épica para o filme Star Wars A New Hope...\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/movies/1/description",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "movies",
+            "1",
+            "description"
+          ]
+        },
+        "description": "Atualiza a descrição (openingCrawl) do filme em memória e incrementa o seu campo 'version'."
+      },
+      "response": [
+        {
+          "name": "200 OK - Descrição Atualizada",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"openingCrawl\": \"Nova descrição épica para o filme Star Wars A New Hope...\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/movies/1/description",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "movies",
+                "1",
+                "description"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"id\": 1,\n  \"title\": \"A New Hope\",\n  \"episodeId\": 4,\n  \"openingCrawl\": \"Nova descrição épica para o filme Star Wars A New Hope...\",\n  \"director\": \"George Lucas\",\n  \"producer\": \"Gary Kurtz, Rick McCallum\",\n  \"releaseDate\": \"1977-05-25\",\n  \"version\": 2\n}"
+        }
+      ]
+    },
+    {
+      "name": "5. Atualizar Descrição - Validação Erro (400)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"openingCrawl\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/movies/1/description",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "movies",
+            "1",
+            "description"
+          ]
+        },
+        "description": "Tenta atualizar o filme passando um openingCrawl em branco ou nulo. Retorna erro de validação HTTP 400 Bad Request."
+      },
+      "response": [
+        {
+          "name": "400 Bad Request - Erro de Validação",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"openingCrawl\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/movies/1/description",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "movies",
+                "1",
+                "description"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"timestamp\": \"2026-10-09T18:00:00\",\n  \"status\": 400,\n  \"error\": \"Bad Request\",\n  \"message\": \"openingCrawl: O campo openingCrawl é obrigatório e não pode ser vazio.\",\n  \"path\": \"/api/movies/1/description\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "6. Atualizar Descrição - ID Inexistente (404)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"openingCrawl\": \"Descrição para filme inexistente...\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/movies/999/description",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "movies",
+            "999",
+            "description"
+          ]
+        },
+        "description": "Tenta atualizar a descrição de um filme inexistente. Retorna erro HTTP 404 Not Found."
+      },
+      "response": [
+        {
+          "name": "404 Not Found",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"openingCrawl\": \"Descrição para filme inexistente...\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/movies/999/description",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "movies",
+                "999",
+                "description"
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"timestamp\": \"2026-10-09T18:00:00\",\n  \"status\": 404,\n  \"error\": \"Not Found\",\n  \"message\": \"Filme com ID 999 não encontrado.\",\n  \"path\": \"/api/movies/999/description\"\n}"
+        }
+      ]
+    }
+  ]
+}
+

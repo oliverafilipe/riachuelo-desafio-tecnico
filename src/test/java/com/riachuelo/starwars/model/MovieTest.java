@@ -62,5 +62,41 @@ class MovieTest {
 
         assertEquals(51L, movie.getVersion());
     }
-}
 
+    @Test
+    @DisplayName("Deve testar getters, setters, equals, hashCode e toString")
+    void deveTestarGettersSettersEqualsHashCodeToString() {
+        Movie movie1 = new Movie();
+        movie1.setId(1L);
+        movie1.setTitle("A New Hope");
+        movie1.setEpisodeId(4);
+        movie1.setOpeningCrawl("Opening...");
+        movie1.setDirector("George Lucas");
+        movie1.setProducer("Gary Kurtz");
+        movie1.setReleaseDate("1977-05-25");
+        movie1.setVersion(1L);
+
+        assertEquals(1L, movie1.getId());
+        assertEquals("A New Hope", movie1.getTitle());
+        assertEquals(4, movie1.getEpisodeId());
+        assertEquals("Opening...", movie1.getOpeningCrawl());
+        assertEquals("George Lucas", movie1.getDirector());
+        assertEquals("Gary Kurtz", movie1.getProducer());
+        assertEquals("1977-05-25", movie1.getReleaseDate());
+        assertEquals(1L, movie1.getVersion());
+
+        Movie movie2 = new Movie(1L, "A New Hope", 4, "Opening...", "George Lucas", "Gary Kurtz", "1977-05-25", 1L);
+
+        assertEquals(movie1, movie2);
+        assertEquals(movie1.hashCode(), movie2.hashCode());
+        assertEquals(movie1, movie1);
+        assertNotEquals(movie1, null);
+        assertNotEquals(movie1, "outraString");
+
+        Movie movie3 = new Movie();
+        movie3.setId(2L);
+        assertNotEquals(movie1, movie3);
+
+        assertTrue(movie1.toString().contains("A New Hope"));
+    }
+}
