@@ -1,19 +1,30 @@
 package com.riachuelo.starwars.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
 
 /**
  * Payload padronizado para respostas de erro da API.
  */
+@Schema(description = "Estrutura padronizada de resposta para erros da API.")
 public class ErrorResponseDTO {
 
+    @Schema(description = "Data e hora em que o erro ocorreu", example = "2026-10-09T18:00:00")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime timestamp;
+
+    @Schema(description = "Código de status HTTP", example = "404")
     private int status;
+
+    @Schema(description = "Descrição reduzida do status HTTP", example = "Not Found")
     private String error;
+
+    @Schema(description = "Mensagem detalhada do erro", example = "Filme com ID 999 não encontrado.")
     private String message;
+
+    @Schema(description = "Caminho da requisição (URI)", example = "/api/movies/999")
     private String path;
 
     public ErrorResponseDTO() {
@@ -67,4 +78,3 @@ public class ErrorResponseDTO {
         this.path = path;
     }
 }
-
