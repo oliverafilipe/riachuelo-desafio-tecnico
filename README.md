@@ -69,7 +69,7 @@ classDiagram
 ### Passos para execução
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/starwars-backend-challenge.git
+   git clone https://github.com/oliverafilipe/riachuelo-desafio-tecnico
    cd starwars-backend-challenge
    ```
 
